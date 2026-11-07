@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Contact me 179437 Layan Nayfeh</title>
+	<link rel="stylesheet" href="MyStyle.css">
+</head>
+<body>
+	<header>
+		<span class="brand">Layan Nayfeh</span>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="contact.html" class="active">Contact Me</a>
+		</nav>
+	</header>
+	
+	<main>
+		<section>
+			<h2>Contact Me</h2>
+			<form id="contactForm" novalidate>
+				<label for="fullName">Full Name</label>
+				<input type="text" id="fullName" name="fullName">
+				<p class="error" id="err-fullName"></p>
+				
+				<label for="email">Email Address</label>
+				<input type="email" id="email" name="email">
+				<p class="error" id="err-email"></p>
+				
+				<label for="country">Country</label>
+				<input type="text" id="country" name="country">
+				<p class="error" id="err-country"></p>
+				
+				<label for="comments">Comments</label>
+				<textarea id="comments" name="comments" rows="5"></textarea>
+				<p class="error" id="err-comments"></p>
+				
+				<button type="submit">Submit</button>
+			</form>
+		</section>
+	</main>
+	
+	<footer>&copy; 2026 Layan Nayfeh</footer>
+	
+	<script>
+		document.getElementById("contactForm").addEventListener("submit", function (e) {
+		e.preventDefault();
+		var fields= [
+			{id: "fullName", msg: "Please enter your full name."},
+			{id: "email", msg: "Please enter your email address."},
+			{id: "country", msg: "Please enter your country."},
+			{id: "comments", msg: "Please write your comments."}
+		];
+		var valid= true;
+		fields.forEach(function (f) {
+			var el= document.getElementById(f.id);
+			var err= document.getElementById("err-" + f.id);
+			if (el.value.trim() === "") {
+				err.textContent= f.msg;
+				valid= false;
+			} 	else {
+				err.textContent= "";
+			}
+		});
+		var email= document.getElementById("email");
+		if (email.value.trim() !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+			document.getElementById("err-email").textContent= "Please enter a valid email address.";
+			valid= false;
+		}
+		if (valid) {
+			alert("Thank you! Your form was submitted successfully.");
+			this.reset();
+		}	
+		});
+	</script>
+</body></html>
